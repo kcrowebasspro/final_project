@@ -31,9 +31,9 @@ app.get('/alerts', async (request, response) => {
 })
 
 // Express Route to get NWS weather alerts for a location
-app.get('/alerts?point=:point_coords', async (request, response) => {
+app.get('/alerts/:point_coords', async (request, response) => {
 
-  scriptName = "server.js: /alerts?point=:point_coords(): "
+  scriptName = "server.js: /alerts/:point_coords(): "
   console.log("in " + scriptName + " ...")
   try {
 
@@ -45,9 +45,7 @@ app.get('/alerts?point=:point_coords', async (request, response) => {
 
         // If coordinates are not provided, pass in a value
         if (my_point.length < 1) {
-           my_lat = process.env.defaultLat
-           my_lon = process.env.defaultLon
-           my_point = my_lat + "," + my_lon
+           my_point = process.env.defaultLatLon
             console.log("Missing coordinates. Default set to: " + my_point)
         }
 
